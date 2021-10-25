@@ -1,26 +1,26 @@
-import ReactDOM from 'react-dom'
-import { Suspense } from 'react'
-import { createUseStyles } from 'react-jss'
-import fetchPropertyData from './mockApi'
-import PropertyCard from './PropertyCard'
-import Loading from './Loading'
+import ReactDOM from "react-dom";
+import { Suspense } from "react";
+import { createUseStyles } from "react-jss";
+import fetchPropertyData from "./mockApi";
+import PropertyCard from "./PropertyCard";
+import Loading from "./Loading";
 
-const resource = fetchPropertyData()
+const resource = fetchPropertyData();
 
 const usePropertyCardsStyles = createUseStyles({
   propertyCards: {
-    padding: '30px 20px',
-    fontFamily: 'sans-serif',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-  },
-})
+    padding: "30px 20px",
+    fontFamily: "sans-serif",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexWrap: "wrap"
+  }
+});
 
 function PropertyCards() {
-  const classes = usePropertyCardsStyles()
-  let properties = resource.read()
+  const classes = usePropertyCardsStyles();
+  let properties = resource.read();
 
   return properties ? (
     <div className={classes.propertyCards}>
@@ -31,37 +31,37 @@ function PropertyCards() {
         />
       ))}
     </div>
-  ) : null
+  ) : null;
 }
 
 const useAppStyles = createUseStyles({
   app: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center"
   },
   header: {
-    textAlign: 'center',
-    margin: '30px 0 0 0',
+    textAlign: "center",
+    margin: "30px 0 0 0"
   },
   reloadButton: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 20,
-    position: 'absolute',
-    height: 70,
-    width: 200,
-    top: 475,
-    '&:hover': {
-      cursor: 'pointer',
-    },
-  },
-})
+    position: "fixed",
+    height: 50,
+    width: 150,
+    bottom: 30,
+    "&:hover": {
+      cursor: "pointer"
+    }
+  }
+});
 
 function App() {
-  const classes = useAppStyles()
+  const classes = useAppStyles();
   function reload() {
     if (window) {
-      window.location.reload()
+      window.location.reload();
     }
   }
   return (
@@ -82,7 +82,7 @@ function App() {
         Reload
       </button>
     </div>
-  )
+  );
 }
 
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById("root"));
